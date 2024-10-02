@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ToDo Application - Laravel & Vue.js
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Esta es una aplicación de gestión de tareas "ToDo" desarrollada usando Laravel para el backend y Vue.js para el frontend, ambos dentro del mismo proyecto. La aplicación permite a los usuarios crear, editar, listar y eliminar notas. Además, cuenta con autenticación de usuarios utilizando **Laravel Passport**.
 
-## About Laravel
+## Requisitos previos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu sistema:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Node.js](https://nodejs.org/) (v14 o superior)
+- [Composer](https://getcomposer.org/) (v2 o superior)
+- [MySQL 8](https://www.mysql.com/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Pasos para la instalación
 
-## Learning Laravel
+# Sigue los siguientes pasos para instalar y configurar el proyecto:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clonar el repositorio**  
+   Clona este repositorio en tu máquina local.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ```bash
+   git clone https://github.com/tu-usuario/nombre-repositorio.git
+   cd nombre-repositorio```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2.- **Instalar dependencias de PHP con Composer**
+Ejecuta el siguiente comando para instalar las dependencias del backend (Laravel):
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3.- **Instalar dependencias de Node.js con npm**
+A continuación, instala las dependencias del frontend (Vue.js):
 
-### Premium Partners
+```bash
+npm install
+```
+4.- **Crear un cliente de acceso personal para Passport**
+Ejecuta el siguiente comando para generar el cliente personal de acceso para Laravel Passport:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+php artisan passport:client --personal --no-interaction
+```
+5.- **Compilar los activos del frontend**
+Compila los archivos de Vue.js para desarrollo (modo watch):
 
-## Contributing
+```bash
+npm run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6.- **Copiar el archivo .env.example y crear nombrarlo como .env**
+Configurar este archivo con los datos para lo conexión de base de datos.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravelvuetodo
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Code of Conduct
+7.- **Para migrar las tablas ejecutar:**
+```
+php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8.- **Modificar la base URL en los servicios de frontend**
+Abre los archivos resources/js/services/noteService.js y resources/js/services/authService.js y modifica el valor de baseUrl con la URL que estás utilizando para Laravel. Si estás usando Laragon y has configurado un host virtual, deja el valor predeterminado:
 
-## Security Vulnerabilities
+```javascript
+const baseUrl = 'http://laravelvuetodo.test/api';
+```
+9.- **Acceder a la aplicación**
+Ingresa a la URL configurada (por ejemplo, http://laravelvuetodo.test) en tu navegador y regístrate para comenzar a usar la aplicación.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Descripción del proyecto
+La aplicación ToDo permite la gestión de notas personales, con funcionalidades de autenticación de usuarios, creación, edición, listado y eliminación de notas.
 
-## License
+## Requerimientos del proyecto
+## Backend
+Lógica del módulo de notas reutilizable.
+API REST con autenticación utilizando Laravel Passport.
+Operaciones CRUD (Crear, Editar, Listar, Eliminar) para las notas mediante API y comandos de Artisan.
+Ordenar las notas por fecha de creación o fecha de vencimiento.
+Migraciones de base de datos (sin archivos SQL).
+Validación de datos en las solicitudes.
+## Frontend
+Uso de Vue Router para las rutas y Vuex para la gestión del estado global.
+Pantallas de inicio de sesión y registro de usuarios.
+Pantalla principal para la visualización de notas.
+Formulario para crear y editar notas.
+Validación de datos en los formularios.
+Peticiones AJAX utilizando Axios.
+Estructura de la nota
+Cada nota contiene:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Requerido:
+Título
+Descripción
+Fecha de creación
+Usuario
+Etiquetas (categorías o grupos de notas)
+## Opcional al crear:
+Fecha de vencimiento
+Imagen adjunta
+
+## Usuario
+Cada usuario tiene los siguientes campos:
+
+Nombre
+Email
+Contraseña
+Base de datos
+La estructura de la base de datos está normalizada y se maneja a través de migraciones, asegurando la coherencia y facilidad de expansión.
+
+## Entregable
+Este proyecto incluye:
+
+Aplicación funcional desplegada en un servidor (Railway, Vercel, Heroku, Netlify, 000Webhost).
+Código fuente en un repositorio público de GitHub o GitLab.
+Puntos a evaluar
+Se evaluarán los siguientes aspectos:
+
+Cumplimiento de las condiciones y requerimientos.
+Organización de archivos y estructura del proyecto.
+Lógica y comentarios en el código.
+Facilidad de lectura del código.
+Estructura de la base de datos.
+Calidad de la API (nombres de endpoints y uso correcto de verbos HTTP).
+Plus
+Se pueden implementar pruebas unitarias en el backend como valor añadido.
+
+## Observaciones
+Este proyecto tiene como objetivo demostrar habilidades de desarrollo, y se fomenta seguir las mejores prácticas en el uso de Laravel y Vue.js.
